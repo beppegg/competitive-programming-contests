@@ -1,0 +1,42 @@
+24 C - Colorful Leaderboard
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+22 4
+2100 2500 2700 2700
+
+4 2 2
+
+1
+1
+27 5
+1100 1900 2800 3200 3200
+
+4 3 5
+
+1
+2
+83 20
+800 810 820 830 840 850 860 870 880 890 900 910 920 930 940 950 960 970 980 990
+
+4 1 1
+
+1
+9 src/tasks
+8 -Xmx256M
+4 Main
+11 tasks.TaskC
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.06.10
+28 AtCoder Beginner Contest 064
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0

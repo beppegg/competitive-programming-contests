@@ -1,0 +1,42 @@
+13 D - Insertion
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+6 3
+())
+
+5 (())
+
+1
+1
+9 6
+)))())
+
+11 (((()))())
+
+1
+2
+11 8
+))))((((
+
+17 (((())))(((())))
+
+1
+9 src/tasks
+8 -Xmx256M
+4 Main
+11 tasks.TaskD
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.06.10
+28 AtCoder Beginner Contest 064
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
