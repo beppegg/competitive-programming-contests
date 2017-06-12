@@ -1,0 +1,55 @@
+11 Twin Arrays
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+5
+0
+22 5
+5 4 3 2 1
+1 2 3 4 5
+
+2 2
+
+1
+1
+6 1
+2
+3
+
+1 0
+1
+2
+22 5
+1 1 1 1 1
+1 1 1 1 1
+
+1 2
+1
+3
+5 1
+1
+1
+1 0
+1
+4
+21 5
+1 2 3 4 5
+1 2 3 4 5
+1 3
+1
+9 src/tasks
+8 -Xmx256M
+8 Solution
+16 tasks.TwinArrays
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.06.12
+15 Week of Code 33
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
