@@ -2,9 +2,12 @@ import java.io.OutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Vector;
+import java.util.TreeMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
 
 /**
  * Built using CHelper plug-in
@@ -16,55 +19,109 @@ public class Solution {
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
-        Scanner in = new Scanner(inputStream);
+        InputReader in = new InputReader(inputStream);
         PrintWriter out = new PrintWriter(outputStream);
-        TwinArrays solver = new TwinArrays();
+        TransformToPalindrome solver = new TransformToPalindrome();
         solver.solve(1, in, out);
         out.close();
     }
 
-    static class TwinArrays {
-        public void solve(int testNumber, Scanner in, PrintWriter out) {
-            int n = in.nextInt();
-            int[] first = new int[n];
-            int[] second = new int[n];
+    static class TransformToPalindrome {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int n = in.readInt();
+            int k = in.readInt();
+            int m = in.readInt();
 
-            Integer[] firstIdx = new Integer[n];
-            Integer[] secondIdx = new Integer[n];
+            Map<Integer, Set<Integer>> transformations = new TreeMap<>();
+            for (int i = 0; i < k; i++) {
+                int from = in.readInt();
+                int to = in.readInt();
 
-            for (int i = 0; i < n; i++) {
-                first[i] = in.nextInt();
-                firstIdx[i] = i;
+                final Set<Integer> fromList = transformations.containsKey(from)
+                        ? transformations.get(from)
+                        : new HashSet<>();
+                final Set<Integer> toList = transformations.containsKey(to) ? transformations.get(to) : new HashSet<>();
+
+                fromList.add(to);
+                toList.add(from);
             }
 
-            for (int i = 0; i < n; i++) {
-                second[i] = in.nextInt();
-                secondIdx[i] = i;
+            int[] word = new int[m];
+            for (int i = 0; i < m; i++) {
+                word[i] = in.readInt();
             }
 
-            Arrays.sort(firstIdx, Comparator.comparingInt(a -> first[a]));
-            Arrays.sort(secondIdx, Comparator.comparingInt(a -> second[a]));
+            int[][] d = new int[m][m];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < m; j++) {
+                    d[i][j] = i < j ? -1 : 0;
+                }
+            }
+            out.println(palindromize(word, transformations));
+        }
 
-            int minIdx1 = 0;
-            int minIdx2 = 0;
-            while ((minIdx1 < n && minIdx2 < n) && firstIdx[minIdx1] == secondIdx[minIdx2]) {
-                if (minIdx1 == n - 1) {
-                    ++minIdx2;
-                } else if (minIdx2 == n - 1) {
-                    ++minIdx1;
-                } else if (first[firstIdx[minIdx1 + 1]] < second[secondIdx[minIdx2 + 1]]) {
-                    ++minIdx1;
-                } else {
-                    ++minIdx2;
+        private int palindromize(int[] word, Map<Integer, Set<Integer>> transformations) {
+            int[][] memo = new int[word.length + 1][word.length + 1];
+            for (int i = 0; i <= word.length; i++) {
+                memo[i][0] = i;
+                memo[0][i] = i;
+            }
+
+            for (int i = 1; i <= word.length; i++) {
+                for (int j = 1; j <= word.length - 1; j++) {
+
+                    if (canTransform(word[i - 1], word[word.length - j - 1], transformations)) {
+                        memo[i][j] = memo[i - j][i - j];
+                    } else {
+                        memo[i][j] = 1 + Math.min(memo[i - 1][j - 1], Math.min(memo[i - 1][j], memo[i][j - 1]));
+                    }
                 }
             }
 
-            if (minIdx1 == n || minIdx2 == n || firstIdx[minIdx1] == secondIdx[minIdx2]) {
-                out.println("0");
-            } else {
-                out.println(first[firstIdx[minIdx1]] + second[secondIdx[minIdx2]]);
-            }
+            return memo[word.length][word.length];
+
         }
+
+        private boolean canTransform(int first, int second, Map<Integer, Set<Integer>> transformation) {
+            boolean canBeTransformed = first == second;
+            if (!canBeTransformed) {
+                final Set<Integer> firstTransformations = evaluateTransformationsFor(first, transformation);
+                final Set<Integer> secondTransformations = evaluateTransformationsFor(first, transformation);
+
+                firstTransformations.retainAll(secondTransformations);
+                canBeTransformed = !firstTransformations.isEmpty();
+            }
+            return canBeTransformed;
+        }
+
+        private Set<Integer> evaluateTransformationsFor(int first,
+                                                        Map<Integer, Set<Integer>> transformation) {
+
+            Set<Integer> transformationSet = new HashSet<>();
+            final Stack<Integer> transitive = new Stack<>();
+            transformationSet.add(first);
+            transitive.push(first);
+            while (!transitive.isEmpty()) {
+                final int current = transitive.pop();
+                if (transformation.containsKey(current)) {
+                    for (final int currentTransformation : transformation.get(current)) {
+                        if (!transformationSet.contains(currentTransformation)) {
+                            transformationSet.add(currentTransformation);
+                            transitive.push(currentTransformation);
+                        }
+                    }
+                }
+            }
+
+            return transformationSet;
+        }
+
+    }
+
+    static class InputReader {
+        public InputReader;
+
+        public int readInt();
 
     }
 }
