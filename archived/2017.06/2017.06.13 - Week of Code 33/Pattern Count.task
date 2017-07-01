@@ -1,0 +1,69 @@
+13 Pattern Count
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+6
+0
+44 3
+100001abc101
+1001ab010abc01001
+1001010001
+
+6 2
+2
+3
+
+1
+1
+17 1
+111111111111111
+1 0
+1
+2
+18 1
+0000000000000000
+1 0
+1
+3
+16 1
+asdadasdasdasd
+1 0
+1
+4
+81 5
+101010101010101
+010101010101010
+100000000000001
+100000000000000
+000000000000001
+9 7
+6
+1
+0
+0
+1
+5
+7 3
+1
+0
+a
+5 0
+0
+0
+1
+9 src/tasks
+8 -Xmx256M
+8 Solution
+18 tasks.PatternCount
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.06.13
+15 Week of Code 33
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0

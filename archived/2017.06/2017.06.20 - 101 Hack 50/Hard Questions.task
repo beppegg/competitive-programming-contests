@@ -1,0 +1,45 @@
+14 Hard Questions
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+53 24
+CCACCBAEBAAAAAAAA.......
+CCACCBAEBAAAAAAAA.......
+
+2 0
+
+1
+1
+18 7
+ACCEDED
+DECADE.
+
+2 4
+
+1
+2
+27 11
+BEE..ADDED.
+CAB.DAD.DEE
+
+2 6
+
+1
+9 src/tasks
+8 -Xmx256M
+8 Solution
+19 tasks.HardQuestions
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.06.20
+11 101 Hack 50
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
