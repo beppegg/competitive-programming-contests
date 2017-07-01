@@ -1,0 +1,33 @@
+12 A - ringring
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+12 700 600 780
+
+5 1300
+
+1
+1
+18 10000 10000 10000
+
+6 20000
+
+1
+9 src/tasks
+8 -Xmx256M
+4 Main
+11 tasks.TaskA
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.07.01
+28 AtCoder Beginner Contest 066
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0

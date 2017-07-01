@@ -1,0 +1,18 @@
+package tasks;
+
+import java.util.Arrays;
+import java.util.Scanner;
+import java.io.PrintWriter;
+
+public class TaskA {
+    public void solve(int testNumber, Scanner in, PrintWriter out) {
+        int[] prices = new int[3];
+        prices[0] = in.nextInt();
+        prices[1] = in.nextInt();
+        prices[2] = in.nextInt();
+
+        Arrays.sort(prices);
+
+        System.out.println(prices[0] + prices[1]);
+    }
+}
