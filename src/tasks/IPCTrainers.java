@@ -11,75 +11,69 @@ public class IPCTrainers {
         int days = in.nextInt();
 
         Trainer[] trainers = new Trainer[trainersNum];
+        long totalUnhappiness = 0;
         for (int i = 0; i < trainersNum; i++) {
             trainers[i] = new Trainer(in.nextInt(), in.nextInt(), in.nextInt());
+            totalUnhappiness += trainers[i].getTotalUnhappiness();
         }
         Arrays.sort(trainers, Comparator.comparingInt(Trainer::getArrivalDay));
 
-        SortedSet<Trainer> availableTrainer = new TreeSet<>(Comparator.comparingInt(Trainer::getUnhappyness)
-                                                                      .thenComparingInt(Trainer::getId)
-                                                                      .reversed());
-        for (int i = 0; i < days; i++) {
-            for (int t = 0; t < trainersNum; t++) {
-                if (trainers[t].getArrivalDay() == i + 1) {
-                    availableTrainer.add(trainers[t]);
-                } else if (trainers[t].getArrivalDay() > i + 1) {
-                    break;
-                }
-            }
-            if (availableTrainer.isEmpty() == false) {
-                final Trainer trainer = availableTrainer.first();
-                trainer.erogate();
-                if (0 == trainer.getRemainingLessons()) {
-                    availableTrainer.remove(trainer);
-                }
+       for (int i = 0; i < days; i++) {
+           long maxUnhappiness = 0;
+           int maxUnhappinessIdx = -1;
+           for (int t = 0; t  < trainersNum && trainers[t].getArrivalDay() <= i + 1; t++) {
+               if (trainers[t].getRemainingLessons() > 0 && trainers[t].getUnhappiness() > maxUnhappiness) {
+                   maxUnhappiness = trainers[t].getUnhappiness();
+                   maxUnhappinessIdx = t;
+               }
+           }
+           if (maxUnhappinessIdx >= 0) {
+                trainers[maxUnhappinessIdx].erogate();
+                totalUnhappiness -= trainers[maxUnhappinessIdx].getUnhappiness();
             }
         }
 
-        out.println(availableTrainer.stream().mapToInt(Trainer::getTotalUnhappyness).sum());
+        out.println(totalUnhappiness);
         //out.println("Case " + testNumber + ": " + (System.currentTimeMillis() - start) + " ms");
     }
 
     private static final class Trainer {
-        private static final AtomicInteger GENERATOR = new AtomicInteger();
-
-        private final int id;
         private final int arrivalDay;
         private final int desiredLessons;
-        private final int unhappyness;
+        private final int unhappiness;
 
-        private int erogatedLessons = 0;
+        private int remainingLessons;
 
         public int getId() {
             return id;
         }
 
-        public Trainer(int arrivalDay, int desiredLessons, int unhappyness) {
-            id = GENERATOR.getAndIncrement();
-
+        Trainer(int arrivalDay, int desiredLessons, int unhappyness) {
             this.arrivalDay = arrivalDay;
             this.desiredLessons = desiredLessons;
-            this.unhappyness = unhappyness;
+            this.unhappiness = unhappyness;
+
+            this.remainingLessons = desiredLessons;
         }
 
-        public int getArrivalDay() {
+        int getArrivalDay() {
             return arrivalDay;
         }
 
-        public int getRemainingLessons() {
-            return desiredLessons - erogatedLessons;
+        int getRemainingLessons() {
+            return remainingLessons;
         }
 
-        public int getUnhappyness() {
-            return unhappyness;
+        int getUnhappiness() {
+            return unhappiness;
         }
 
-        public int getTotalUnhappyness() {
-            return unhappyness * (desiredLessons - erogatedLessons);
+        int getTotalUnhappiness() {
+            return unhappiness * (remainingLessons);
         }
 
-        public void erogate() {
-            ++erogatedLessons;
+        void erogate() {
+            --remainingLessons;
         }
 
         @Override
@@ -87,8 +81,8 @@ public class IPCTrainers {
             return "Trainer{" +
                    "arrivalDay=" + arrivalDay +
                    ", desiredLessons=" + desiredLessons +
-                   ", unhappyness=" + unhappyness +
-                   ", erogatedLessons=" + erogatedLessons +
+                   ", unhappiness=" + unhappiness +
+                   ", remainingLessons=" + remainingLessons +
                    '}';
         }
     }
