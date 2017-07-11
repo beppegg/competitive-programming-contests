@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class IPCTrainers {
     public void solve(int testNumber, Scanner in, PrintWriter out) {
+        //long start = System.currentTimeMillis();
         int trainersNum = in.nextInt();
         int days = in.nextInt();
 
@@ -36,6 +37,7 @@ public class IPCTrainers {
         }
 
         out.println(availableTrainer.stream().mapToInt(Trainer::getTotalUnhappyness).sum());
+        //out.println("Case " + testNumber + ": " + (System.currentTimeMillis() - start) + " ms");
     }
 
     private static final class Trainer {
