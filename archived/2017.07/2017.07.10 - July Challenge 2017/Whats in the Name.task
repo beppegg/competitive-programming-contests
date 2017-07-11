@@ -1,0 +1,32 @@
+17 Whats in the Name
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+50 3
+gandhi
+mahatma gandhI
+Mohndas KaramChand gandhi
+
+32 Gandhi 
+M. Gandhi 
+M. K. Gandhi
+
+1
+9 src/tasks
+7 -Xmx64M
+4 Main
+20 tasks.WhatsInTheName
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.07.10
+19 July Challenge 2017
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
