@@ -1,0 +1,45 @@
+6 B - ss
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+4
+0
+11 abaababaab
+
+2 6
+
+1
+1
+5 xxxx
+
+2 2
+
+1
+2
+13 abcabcabcabc
+
+2 6
+
+1
+3
+23 akasakaakasakasakaakas
+
+3 14
+
+1
+9 src/tasks
+8 -Xmx256M
+4 Main
+11 tasks.TaskB
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.07.01
+28 AtCoder Beginner Contest 066
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
