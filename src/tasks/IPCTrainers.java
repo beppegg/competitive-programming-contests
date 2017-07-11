@@ -2,7 +2,6 @@ package tasks;
 
 import java.util.*;
 import java.io.PrintWriter;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class IPCTrainers {
     public void solve(int testNumber, Scanner in, PrintWriter out) {
@@ -44,9 +43,6 @@ public class IPCTrainers {
 
         private int remainingLessons;
 
-        public int getId() {
-            return id;
-        }
 
         Trainer(int arrivalDay, int desiredLessons, int unhappyness) {
             this.arrivalDay = arrivalDay;
