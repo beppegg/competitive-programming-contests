@@ -15,21 +15,16 @@ public class IPCTrainers {
             trainers[i] = new Trainer(in.nextInt(), in.nextInt(), in.nextInt());
             totalUnhappiness += trainers[i].getTotalUnhappiness();
         }
-        Arrays.sort(trainers, Comparator.comparingInt(Trainer::getArrivalDay));
+        Arrays.sort(trainers, Comparator.comparingInt(Trainer::getUnhappiness).thenComparingInt(Trainer::getArrivalDay).reversed());
 
-       for (int i = 0; i < days; i++) {
-           long maxUnhappiness = 0;
-           int maxUnhappinessIdx = -1;
-           for (int t = 0; t  < trainersNum && trainers[t].getArrivalDay() <= i + 1; t++) {
-               if (trainers[t].getRemainingLessons() > 0 && trainers[t].getUnhappiness() > maxUnhappiness) {
-                   maxUnhappiness = trainers[t].getUnhappiness();
-                   maxUnhappinessIdx = t;
+       for (int i = 1; i < days + 1; ++i) {
+           for (int t = 0; t < trainersNum; t++) {
+               if (trainers[t].getArrivalDay() <= i && trainers[t].getRemainingLessons() > 0) {
+                   trainers[t].erogate();
+                   totalUnhappiness -= trainers[t].getUnhappiness();
+                   break;
                }
            }
-           if (maxUnhappinessIdx >= 0) {
-                trainers[maxUnhappinessIdx].erogate();
-                totalUnhappiness -= trainers[maxUnhappinessIdx].getUnhappiness();
-            }
         }
 
         out.println(totalUnhappiness);
