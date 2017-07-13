@@ -12,10 +12,10 @@ public class IPCTrainers {
         Trainer[] trainers = new Trainer[trainersNum];
         long totalUnhappiness = 0;
         for (int i = 0; i < trainersNum; i++) {
-            trainers[i] = new Trainer(in.nextInt(), in.nextInt(), in.nextInt());
+            trainers[i] = new Trainer(in.nextInt(), in.nextInt(), in.nextLong());
             totalUnhappiness += trainers[i].getTotalUnhappiness();
         }
-        Arrays.sort(trainers, Comparator.comparingInt(Trainer::getUnhappiness).reversed());
+        Arrays.sort(trainers, Comparator.comparingLong(Trainer::getUnhappiness).reversed());
 
         BitSet availableDays = new BitSet(days + 1);
         availableDays.set(1, days + 1);
@@ -35,12 +35,12 @@ public class IPCTrainers {
     private static final class Trainer {
         private final int arrivalDay;
         private final int desiredLessons;
-        private final int unhappiness;
+        private final long unhappiness;
 
         private int remainingLessons;
 
 
-        Trainer(int arrivalDay, int desiredLessons, int unhappyness) {
+        Trainer(int arrivalDay, int desiredLessons, long unhappyness) {
             this.arrivalDay = arrivalDay;
             this.desiredLessons = desiredLessons;
             this.unhappiness = unhappyness;
@@ -56,12 +56,12 @@ public class IPCTrainers {
             return remainingLessons;
         }
 
-        int getUnhappiness() {
+        long getUnhappiness() {
             return unhappiness;
         }
 
-        int getTotalUnhappiness() {
-            return unhappiness * (remainingLessons);
+        long getTotalUnhappiness() {
+            return unhappiness * ((long)remainingLessons);
         }
 
         void erogate() {
