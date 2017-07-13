@@ -1,5 +1,6 @@
 package tasks;
 
+import java.nio.LongBuffer;
 import java.util.*;
 import java.io.PrintWriter;
 
@@ -15,16 +16,18 @@ public class IPCTrainers {
             trainers[i] = new Trainer(in.nextInt(), in.nextInt(), in.nextInt());
             totalUnhappiness += trainers[i].getTotalUnhappiness();
         }
-        Arrays.sort(trainers, Comparator.comparingInt(Trainer::getUnhappiness).thenComparingInt(Trainer::getArrivalDay).reversed());
+        Arrays.sort(trainers, Comparator.comparingInt(Trainer::getUnhappiness).reversed());
 
-       for (int i = 1; i < days + 1; ++i) {
-           for (int t = 0; t < trainersNum; t++) {
-               if (trainers[t].getArrivalDay() <= i && trainers[t].getRemainingLessons() > 0) {
-                   trainers[t].erogate();
-                   totalUnhappiness -= trainers[t].getUnhappiness();
-                   break;
-               }
-           }
+        BitSet availableDays = new BitSet(days + 1);
+        availableDays.set(1, days + 1);
+        for (int t = 0; t < trainersNum && ! availableDays.isEmpty(); t++) {
+            for (int lessonDay = availableDays.nextSetBit(trainers[t].getArrivalDay());
+                 lessonDay >= 0 && trainers[t].getRemainingLessons() > 0;
+                 lessonDay = availableDays.nextSetBit(lessonDay)) {
+                trainers[t].erogate();
+                totalUnhappiness -= trainers[t].getUnhappiness();
+                availableDays.clear(lessonDay);
+            }
         }
 
         out.println(totalUnhappiness);
