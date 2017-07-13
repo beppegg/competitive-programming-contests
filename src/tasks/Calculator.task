@@ -4,7 +4,7 @@
 9 input.txt
 8 STANDARD
 10 output.txt
-7
+9
 0
 15 3
 10 2
@@ -99,6 +99,16 @@
 1
 0
 
+1
+7
+8 1
+100 30
+2 80
+1
+8
+6 1
+14 5
+1 9
 1
 9 src/tasks
 7 -Xmx64M

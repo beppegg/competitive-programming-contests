@@ -17,7 +17,9 @@ public class Calculator {
             return;
         }
 
-        int possibleMax = Math.min(n / 2, n - b);
+        int possibleMax = n / 2;
+        possibleMax -= possibleMax % b;
+
         int max = -1;
         int outcome = 0;
         while (max <= outcome && possibleMax <= n - b) {
