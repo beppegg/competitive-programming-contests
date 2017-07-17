@@ -1,0 +1,35 @@
+14 Once in a tram
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+3
+0
+7 555555
+
+7 555564
+
+1
+1
+6 999998
+6 999999
+1
+2
+6 995996
+6 996699
+1
+9 src/tasks
+8 -Xmx256M
+8 Solution
+17 tasks.OnceInATram
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.07.17
+15 Week of Code 34
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
