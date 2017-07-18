@@ -1,0 +1,29 @@
+19 Maximum Gcd and Sum
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+23 5
+3 1 4 2 8
+5 2 12 8 3
+
+3 16
+
+1
+9 src/tasks
+8 -Xmx256M
+8 Solution
+22 tasks.MaximumGcdAndSum
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.07.18
+15 Week of Code 34
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+0
